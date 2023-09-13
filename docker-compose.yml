@@ -26,7 +26,8 @@ services:
 
   backups:
     image: itzg/mc-backup
-    depends_on: minecraft
+    depends_on:
+      - minecraft
     environment:
       BACKUP_INTERVAL: "1d"
       RCON_HOST: minecraft
