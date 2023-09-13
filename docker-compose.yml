@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  minecraft:
+    restart: always
+    image: itzg/minecraft-server
+
+    environment:
+      EULA: "TRUE"
+      TYPE: SPIGOT
+      VIEW_DISTANCE: 10
+      MEMORY: 4G
+      DIFFICULTY: "hard"
+      MOTD: "Our Mincraft Server"
+      WHITELIST_FILE: ./data/whitelist.json
+      PLUGINS: |
+        https://mediafilez.forgecdn.net/files/4744/18/multiverse-core-4.3.12.jar
+        https://mediafilez.forgecdn.net/files/4721/154/multiverse-portals-4.2.3.jar
+        https://download.luckperms.net/1515/bukkit/loader/LuckPerms-Bukkit-5.4.102.jar
+    ports:
+      - 25565:25565
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./data:/data
+
+  backups:
+    image: itzg/mc-backup
+    depends_on: minecraft
+    environment:
+      BACKUP_INTERVAL: "1d"
+      RCON_HOST: minecraft
+      INITIAL_DELAY: 0
+    volumes:
+      - ./data:/data:ro
+      - ./backups:/backups
+  
