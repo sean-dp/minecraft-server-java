@@ -13,6 +13,8 @@ services:
       DIFFICULTY: "hard"
       MOTD: "Our Mincraft Server"
       WHITELIST_FILE: ./data/whitelist.json
+      GUI: "FALSE"
+      JVM_XX_OPTS: -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=30 -XX:G1HeapRegionSize=32M
       PLUGINS: |
         https://mediafilez.forgecdn.net/files/4744/18/multiverse-core-4.3.12.jar
         https://mediafilez.forgecdn.net/files/4721/154/multiverse-portals-4.2.3.jar
